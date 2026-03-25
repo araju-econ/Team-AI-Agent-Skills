@@ -1,0 +1,14 @@
+{
+  "name": "team-ai-agent-skills",
+  "owner": {
+    "name": "araju-econ"
+  },
+  "plugins": [
+    {
+      "name": "team-ai-agent-skills",
+      "source": ".",
+      "description": "Shared agent skills for the research team",
+      "version": "1.0.0"
+    }
+  ]
+}
