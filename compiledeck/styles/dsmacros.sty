@@ -1,0 +1,57 @@
+%% dsmacros.sty — utility macros
+\ProvidesPackage{dsmacros}[2024/01/01 DS Macros]
+\RequirePackage{xcolor}
+\RequirePackage{mdframed}
+
+% Inline code
+\newcommand{\cmd}[1]{{\ttfamily\small\color{secondary}#1}}
+\newcommand{\file}[1]{{\ttfamily\small\color{tertiary}#1}}
+\newcommand{\pkg}[1]{{\bfseries\color{tertiary}#1}}
+\newcommand{\robj}[1]{{\ttfamily\color{primary}#1}}
+
+\newcommand{\key}[1]{%
+  \begingroup\setlength{\fboxsep}{1.5pt}%
+  {\footnotesize\fbox{\ttfamily\color{primary}#1}}%
+  \endgroup
+}
+
+% Callout boxes
+\newcommand{\dsnote}[1]{%
+  \begin{beamercolorbox}[wd=\linewidth, sep=0.4em, rounded=true]{block body alerted}
+    {\small\color{secondary}\textbf{Note:}~}{\small\color{text}#1}
+  \end{beamercolorbox}%
+}
+
+\newcommand{\dstip}[1]{%
+  \begin{beamercolorbox}[wd=\linewidth, sep=0.4em, rounded=true]{block body example}
+    {\small\color{tertiary}\textbf{Tip:}~}{\small\color{text}#1}
+  \end{beamercolorbox}%
+}
+
+% Prompt box
+\newcommand{\promptbox}[1]{%
+  \colorbox{primary}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
+    \raggedright\vspace{2pt}{\ttfamily\scriptsize\color{white}#1}\vspace{2pt}}}%
+}
+
+% Two-column shorthand
+\newcommand{\twocol}[3][0.48]{%
+  \begin{columns}[T]
+    \begin{column}{#1\textwidth}#2\end{column}
+    \hfill
+    \begin{column}{#1\textwidth}#3\end{column}
+  \end{columns}%
+}
+
+% Highlighting
+\newcommand{\hlc}[1]{{\color{secondary}\bfseries #1}}
+\newcommand{\hlb}[1]{{\color{primary}\bfseries #1}}
+
+% Step counter
+\newcounter{dsstep}
+\newcommand{\resetsteps}{\setcounter{dsstep}{0}}
+\newcommand{\step}[1]{%
+  \stepcounter{dsstep}%
+  \medskip\noindent
+  {\color{secondary}\bfseries\large\thedsstep.}~~{\color{text}#1}\par
+}

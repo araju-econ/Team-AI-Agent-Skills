@@ -1,0 +1,81 @@
+% loadslides.tex — Package loading & theme configuration
+% Copy this file + the styles/ folder into your project's temp/ directory.
+
+% Theme
+\usepackage{temp/styles/elegantmacros}
+\usefolder{temp/styles}
+\usetheme[style=ds]{elegant}
+
+% Encoding & fonts
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% Math
+\usepackage{amsmath, amssymb, amsfonts}
+
+% Graphics
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{calc, positioning, arrows.meta, shapes.geometric, fit, backgrounds}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% Tables
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{float}
+
+% Numbers
+\usepackage{siunitx}
+\sisetup{group-separator={,}, group-minimum-digits=4}
+
+% Colors
+\usepackage{xcolor}
+
+% Code listings
+\usepackage{listings}
+\AtBeginDocument{%
+  \lstset{
+    basicstyle    = \ttfamily\scriptsize,
+    keywordstyle  = \color{primary}\bfseries,
+    commentstyle  = \color{tertiary}\itshape,
+    stringstyle   = \color{secondary},
+    showstringspaces = false,
+    breaklines    = true,
+    breakatwhitespace = true,
+    columns       = flexible,
+    keepspaces    = true,
+    frame         = none,
+    xleftmargin   = 0pt,
+  }%
+}
+
+% Hyperlinks
+\hypersetup{
+  colorlinks  = true,
+  linkcolor   = primary,
+  urlcolor    = tertiary,
+  citecolor   = tertiary,
+}
+
+% Layout helpers
+\usepackage{multicol}
+
+% Custom macros
+\usepackage{temp/styles/dsmacros}
+
+% Bullet spacing
+\makeatletter
+\renewcommand{\@listI}{%
+  \leftmargin\leftmargini
+  \topsep 4pt plus 2pt minus 1pt
+  \parsep 0pt
+  \itemsep 5pt plus 1pt minus 1pt}
+\makeatother
+
+% Suppress warnings
+\pdfsuppresswarningpagegroup=1

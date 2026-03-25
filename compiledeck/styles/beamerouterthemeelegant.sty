@@ -1,0 +1,38 @@
+\mode<presentation>
+
+\RequirePackage{tikz}
+
+% Frame title with blue rule underneath
+\setbeamertemplate{frametitle}{%
+  \vspace{0.9cm}
+  \usebeamercolor*[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle
+  \vspace*{0.15cm}\par
+  {\color{primary}\rule{\textwidth}{0.4pt}}%
+  \vspace*{0.2cm}%
+}
+
+% Auto frame title from section disabled to keep section dividers clean
+
+% Footer
+\setbeamertemplate{footline}{%
+  \hspace*{10mm}%
+  {\usebeamerfont{footline}%
+   \color{Gray}\insertshortauthor
+   \hfill
+   \color{primary}\insertshorttitle
+   \hfill
+   \color{Gray}\insertframenumber%
+  }%
+  \hspace*{10mm}%
+  \vspace*{5mm}%
+  % Progress bar
+  \begin{tikzpicture}[overlay, remember picture]
+    \fill[dsLight] (current page.south west) rectangle
+      ([yshift=1.5pt]current page.south east);
+    \fill[secondary] (current page.south west) rectangle
+      ([xshift=\dimexpr\paperwidth*\insertframenumber/\inserttotalframenumber\relax,
+        yshift=1.5pt]current page.south west);
+  \end{tikzpicture}%
+}
+
+\mode<all>

@@ -1,0 +1,20 @@
+\mode<presentation>
+\DeclareOptionBeamer{style}{
+    \PassOptionsToPackage{style=#1}{beamercolorthemeelegant}
+}
+\ExecuteOptionsBeamer{style=ds}
+\ProcessOptionsBeamer
+\usecolortheme{elegant}
+\usefonttheme{elegant}
+\useinnertheme{elegant}
+\useoutertheme{elegant}
+\setbeamertemplate{navigation symbols}{}
+% 20cm x 13cm paper, 16:10-ish
+\makeatletter
+    \setlength\beamer@paperwidth{20.00cm}%
+    \setlength\beamer@paperheight{13.00cm}%
+    \geometry{papersize={\beamer@paperwidth,\beamer@paperheight}}
+\makeatother
+\setbeamersize{text margin left=12mm, text margin right=12mm}
+
+\mode<all>

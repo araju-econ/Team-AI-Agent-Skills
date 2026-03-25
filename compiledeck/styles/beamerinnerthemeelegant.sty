@@ -1,0 +1,149 @@
+\mode<presentation>
+
+\RequirePackage{tikz}
+\usetikzlibrary{calc}
+\RequirePackage{listings}
+\RequirePackage{etoolbox}
+
+% Table of Contents with dot leaders + page numbers
+\makeatletter
+\AtBeginPart{%
+  \beamer@tocsectionnumber=0\relax
+  \setcounter{section}{0}
+}
+\makeatother
+
+\newcounter{sectionpage}
+
+\makeatletter
+\newcommand \Dotfill {\leavevmode \cleaders \hb@xt@ 0.8em{\hss .\hss }\hfill \kern \z@}
+\makeatother
+
+\makeatletter
+\patchcmd{\beamer@section}
+    {\addtocontents{toc}{\protect\beamer@sectionintoc{\the\c@section}{#2}{\the\c@page}{\the\c@part}{\the\beamer@tocsectionnumber}}}
+    {\setcounter{sectionpage}{\insertframenumber}\stepcounter{sectionpage}%
+     \addtocontents{toc}{\protect\beamer@sectionintoc{\the\c@section}{#2\Dotfill\thesectionpage}{\the\c@page}{\the\c@part}{\the\beamer@tocsectionnumber}}}
+    {}{}
+\makeatother
+
+\setbeamertemplate{section in toc}{%
+  \leavevmode{\bfseries\color{black}\inserttocsectionnumber}\hspace{0.3cm}%
+  \textbf{\color{black}\inserttocsection}\vspace{0.3em}%
+}
+\setbeamertemplate{subsection in toc}{%
+  \leavevmode\leftskip=4.2em\rlap{\hskip-2em\small\inserttocsectionnumber.\inserttocsubsectionnumber}%
+  \hspace{0.2cm}\small\inserttocsubsection\par\vspace{0.3em}%
+}
+
+% Title page
+\setbeamertemplate{title page}{%
+  \vspace{2.5em}
+  {\usebeamerfont{title}\color{primary}\inserttitle}\par
+  \vspace{0.4em}
+  {\color{secondary}\rule{4cm}{0.6pt}}\par
+  \vspace{0.4em}
+  {\usebeamerfont{subtitle}\color{tertiary}\insertsubtitle}\par
+  \vspace{2em}
+  {\usebeamerfont{author}\color{text}\insertauthor}\par
+  \vspace{0.15em}
+  {\usebeamerfont{institute}\color{tertiary}\insertinstitute}\par
+  \vspace{0.15em}
+  {\usebeamerfont{date}\color{tertiary}\insertdate}
+}
+
+% Section divider slides — white background, big centered title
+\AtBeginSection[]{%
+  {%
+  \setbeamercolor{background canvas}{bg=white}%
+  \begin{frame}[plain,c]
+    \centering
+    {\color{black}\Huge\bfseries\insertsection}
+  \end{frame}
+  }%
+}
+
+% Blocks
+\setbeamertemplate{block begin}{%
+  \par\vskip\medskipamount%
+  \begin{beamercolorbox}[colsep*=2mm]{block title}
+    \usebeamerfont*{block title}\insertblocktitle%
+  \end{beamercolorbox}%
+  {\parskip0pt\par}%
+  \ifbeamercolorempty[bg]{block title}{}
+  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[colsep*=2mm,vmode]{block body}%
+    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+}
+\setbeamertemplate{block alerted begin}{%
+  \par\vskip\medskipamount%
+  \begin{beamercolorbox}[colsep*=2mm]{block title alerted}
+    \usebeamerfont*{block title alerted}\insertblocktitle%
+  \end{beamercolorbox}%
+  {\parskip0pt\par}%
+  \ifbeamercolorempty[bg]{block title alerted}{}
+  {\ifbeamercolorempty[bg]{block body alerted}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body alerted}%
+  \begin{beamercolorbox}[colsep*=2mm,vmode]{block body alerted}%
+    \ifbeamercolorempty[bg]{block body alerted}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+}
+\setbeamertemplate{block example begin}{%
+  \par\vskip\medskipamount%
+  \begin{beamercolorbox}[colsep*=2mm]{block title example}
+    \usebeamerfont*{block title example}\insertblocktitle%
+  \end{beamercolorbox}%
+  {\parskip0pt\par}%
+  \ifbeamercolorempty[bg]{block title example}{}
+  {\ifbeamercolorempty[bg]{block body example}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body example}%
+  \begin{beamercolorbox}[colsep*=2mm,vmode]{block body example}%
+    \ifbeamercolorempty[bg]{block body example}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+}
+
+% Lists
+\setbeamertemplate{itemize item}{\textbullet}
+\setbeamertemplate{itemize subitem}[circle]
+\setbeamerfont{itemize/enumerate subbody}{size=\normalfont}
+
+% Captions
+\setbeamertemplate{caption label separator}[period]
+
+% Text macros
+\newenvironment{emphasize}[1]{\textcolor{primary}{#1}}{}
+\providecommand{\eexample}[1]{\textcolor{tertiary}{#1}}
+
+% Code environments
+\lstset{
+  basicstyle    = \ttfamily\scriptsize,
+  keywordstyle  = \color{primary}\bfseries,
+  commentstyle  = \color{tertiary}\itshape,
+  stringstyle   = \color{secondary},
+  showstringspaces = false,
+  breaklines    = true,
+  breakatwhitespace = true,
+  columns       = flexible,
+  keepspaces    = true,
+}
+
+\lstnewenvironment{rcode}[1][]{%
+  \lstset{language=R, backgroundcolor=\color{dsLight},
+    frame=single, framerule=0pt, rulecolor=\color{dsLight},
+    xleftmargin=4pt, xrightmargin=2pt, #1}%
+}{}
+
+\lstnewenvironment{shellbox}[1][]{%
+  \lstset{language={}, backgroundcolor=\color{primary},
+    basicstyle=\ttfamily\scriptsize\color{white},
+    keywordstyle=\color{secondary},
+    frame=single, framerule=0pt, rulecolor=\color{primary},
+    xleftmargin=4pt, xrightmargin=2pt, #1}%
+}{}
+
+\lstnewenvironment{codebox}[2][]{%
+  \lstset{language=#2, backgroundcolor=\color{dsLight},
+    frame=single, framerule=0pt, rulecolor=\color{dsLight},
+    xleftmargin=4pt, #1}%
+}{}
+
+\mode<all>

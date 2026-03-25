@@ -1,0 +1,106 @@
+\mode<presentation>
+
+\RequirePackage{xcolor}
+
+\definecolor{Gray}{HTML}{808080}
+
+\DeclareOptionBeamer{style}{\def\beamer@mytheme@style{#1}}
+\ExecuteOptionsBeamer{style=ds}
+\ProcessOptionsBeamer
+
+\def\beamer@mytheme@styleds{ds}%
+\def\beamer@mytheme@stylegold{gold}%
+\def\beamer@mytheme@styleorange{orange}%
+\def\beamer@mytheme@stylered{red}%
+\def\beamer@mytheme@stylegray{gray}%
+
+\ifx\beamer@mytheme@style\beamer@mytheme@styleds%
+    \definecolor{primary}{HTML}{1B2A4A}
+    \definecolor{secondary}{HTML}{E8735A}
+    \definecolor{tertiary}{HTML}{5C7A99}
+    \definecolor{text}{HTML}{2C3E50}
+    \setbeamercolor*{framesubtitle}{fg=tertiary,bg=white}
+\else\ifx\beamer@mytheme@style\beamer@mytheme@stylegold%
+    \definecolor{primary}{HTML}{08457E}
+    \definecolor{secondary}{HTML}{B8860B}
+    \definecolor{tertiary}{HTML}{B22222}
+    \definecolor{text}{HTML}{000000}
+    \setbeamercolor*{framesubtitle}{fg=secondary,bg=white}
+\else\ifx\beamer@mytheme@style\beamer@mytheme@stylered%
+    \definecolor{primary}{HTML}{08457E}
+    \definecolor{secondary}{HTML}{B02A30}
+    \definecolor{tertiary}{HTML}{006400}
+    \definecolor{text}{HTML}{000000}
+    \setbeamercolor*{framesubtitle}{fg=secondary,bg=white}
+\else\ifx\beamer@mytheme@style\beamer@mytheme@styleorange%
+    \definecolor{primary}{HTML}{08457E}
+    \definecolor{secondary}{HTML}{CC5500}
+    \definecolor{tertiary}{HTML}{008B8B}
+    \definecolor{text}{HTML}{000000}
+    \setbeamercolor*{framesubtitle}{fg=secondary,bg=white}
+\else\ifx\beamer@mytheme@style\beamer@mytheme@stylegray%
+    \definecolor{primary}{HTML}{08457E}
+    \definecolor{secondary}{HTML}{E60073}
+    \definecolor{tertiary}{HTML}{33CCCC}
+    \definecolor{text}{HTML}{424242}
+    \setbeamercolor*{framesubtitle}{fg=Gray,bg=white}
+\else%
+    \definecolor{primary}{HTML}{08457E}
+    \definecolor{secondary}{HTML}{F209B1}
+    \definecolor{tertiary}{HTML}{33CCCC}
+    \definecolor{text}{HTML}{000000}
+    \setbeamercolor*{framesubtitle}{fg=secondary,bg=white}
+\fi\fi\fi\fi\fi%
+
+% DS color aliases
+\colorlet{dsPrimary}{primary}
+\colorlet{dsAccent}{secondary}
+\colorlet{dsSlate}{tertiary}
+\definecolor{dsLight}{HTML}{F5F7FA}
+\definecolor{dsWhite}{HTML}{FFFFFF}
+\colorlet{dsText}{text}
+\definecolor{dsMid}{HTML}{DCE4EE}
+
+% Beamer color assignments
+\setbeamercolor*{background canvas}{bg=white}
+\setbeamercolor*{footer}{fg=Gray}
+\setbeamercolor*{footer text}{fg=primary}
+\setbeamercolor*{footline}{fg=Gray}
+\setbeamercolor*{frametitle}{fg=primary,bg=white}
+\setbeamercolor*{title}{fg=primary,bg=white}
+\setbeamercolor*{author}{fg=text,bg=white}
+\setbeamercolor*{institute}{fg=tertiary,bg=white}
+\setbeamercolor*{date}{fg=tertiary,bg=white}
+\setbeamercolor*{part title}{fg=primary}
+\setbeamercolor*{caption name}{fg=text}
+\setbeamercolor*{section in toc}{fg=black}
+
+\setbeamercolor*{alerted text}{fg=secondary,bg=white}
+\setbeamercolor*{example text}{fg=tertiary,bg=white}
+\setbeamercolor*{normal text}{fg=text,bg=white}
+
+\setbeamercolor*{itemize item}{fg=primary}
+\setbeamercolor*{itemize subitem}{fg=secondary}
+\setbeamercolor*{itemize subsubitem}{fg=tertiary}
+\setbeamercolor*{enumerate item}{fg=primary}
+\setbeamercolor*{enumerate subitem}{fg=secondary}
+\setbeamercolor*{description item}{fg=primary}
+
+\setbeamercolor{button}{bg=primary,fg=white}
+
+\setbeamercolor{block title}{bg=white, fg=primary}
+\setbeamercolor{block body}{fg=text}
+\setbeamercolor{block title alerted}{bg=white, fg=secondary}
+\setbeamercolor{block body alerted}{bg=white, fg=text}
+\setbeamercolor{block title example}{bg=white, fg=tertiary}
+\setbeamercolor{block body example}{bg=white, fg=text}
+
+\setbeamercolor{section page}{fg=white, bg=primary}
+
+\setbeamercolor*{bibliography item}{fg=primary}
+\setbeamercolor*{bibliography entry author}{fg=primary}
+\setbeamercolor*{bibliography entry title}{fg=text}
+\setbeamercolor*{bibliography entry location}{fg=text}
+\setbeamercolor*{bibliography entry note}{fg=text}
+
+\mode<all>
